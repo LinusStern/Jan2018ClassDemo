@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Chinook.Data.Entities;
 using ChinookSystem.DAL;
 using System.ComponentModel;
+using System.Data.Entity;
 #endregion
 
 namespace ChinookSystem.BLL
@@ -39,6 +40,71 @@ namespace ChinookSystem.BLL
             using (ChinookContext context = new ChinookContext())
             {
                 return context.Albums.Find(albumID);
+            }
+        }
+
+        /// <summary>
+        /// Adds an album to the corresponding table in the database
+        /// </summary>
+        /// <param name="album"></param>
+        [DataObjectMethod(DataObjectMethodType.Insert, false)]
+        public void Album_Add(Album album)
+        {
+            using (ChinookContext context = new ChinookContext())
+            {
+                // Staged for physical insertion into the database
+                context.Albums.Add(album);
+
+                // Commit the changes to the database
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Updates a specific album in the database
+        /// </summary>
+        /// <param name="album"></param>
+        [DataObjectMethod(DataObjectMethodType.Update, false)]
+        public void Album_Update(Album album)
+        {
+            using (ChinookContext context = new ChinookContext())
+            {
+                album.ReleaseLabel = string.IsNullOrEmpty(album.ReleaseLabel) ? null : album.ReleaseLabel;
+
+                // Flag record as being modified
+                context.Entry(album).State = EntityState.Modified;
+
+                // Commit the changes to the database
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Removes a specific album from the database
+        /// </summary>
+        /// <param name="album"></param>
+        [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public void Album_Delete(Album album)
+        {
+            using (ChinookContext context = new ChinookContext())
+            {
+                Albums_Delete(album.AlbumID);
+            }
+        }
+
+        public void Albums_Delete(int albumID)
+        {
+            using (ChinookContext context = new ChinookContext())
+            {
+                var existingAlbum = context.Albums.Find(albumID);
+
+                // Ensure provided record exists in the database
+                if (existingAlbum == null) {
+                    throw new Exception("Provided album does not exist on file");
+                }
+
+                context.Albums.Remove(existingAlbum);
+                context.SaveChanges();
             }
         }
     }

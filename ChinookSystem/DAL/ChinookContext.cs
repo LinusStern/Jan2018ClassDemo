@@ -13,7 +13,7 @@ namespace ChinookSystem.DAL
 {
     internal class ChinookContext : DbContext
     {
-        public ChinookContext() : base("name=ChinookDB") // Name links to web connection string specified in config file
+        public ChinookContext() : base("name=ChinookDB") // Name links to web connection string specified in WebConnection.config file
         {
 
         }

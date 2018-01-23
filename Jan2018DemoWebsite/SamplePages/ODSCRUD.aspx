@@ -14,7 +14,7 @@
                     <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
-                <td>
+                <td style="text-align:center">
                     <asp:Label Text='<%# Eval("AlbumID") %>' runat="server" ID="AlbumIDLabel"
                          Width="75px" /></td>
                 <td>
@@ -28,7 +28,7 @@
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:Label Text='<%# Eval("ArtistID") %>' runat="server" ID="ArtistIDLabel" /></td>--%>
-                <td>
+                <td style="text-align:center">
                     <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" 
                         Width="75px" /></td>
                 <td>
@@ -41,7 +41,7 @@
                     <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
                     <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
                 </td>
-                <td>
+                <td style="text-align:center">
                     <asp:TextBox Text='<%# Bind("AlbumID") %>' runat="server" ID="AlbumIDTextBox" 
                         Width="75px" Enabled="False" /></td>
                 <td>
@@ -55,7 +55,7 @@
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:TextBox Text='<%# Bind("ArtistID") %>' runat="server" ID="ArtistIDTextBox" /></td>--%>
-                <td>
+                <td style="text-align:center">
                     <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox" 
                         Width="75px" /></td>
                 <td>
@@ -75,7 +75,7 @@
                     <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
                     <asp:Button runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" />
                 </td>
-                <td>
+                <td style="text-align:center">
                     <asp:TextBox Text='<%# Bind("AlbumID") %>' runat="server" ID="AlbumIDTextBox" 
                         Width="75px" Enabled="False" /></td>
                 <td>
@@ -89,7 +89,7 @@
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:TextBox Text='<%# Bind("ArtistID") %>' runat="server" ID="ArtistIDTextBox" /></td>--%>
-                <td>
+                <td style="text-align:center">
                     <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox" 
                         Width="75px" /></td>
                 <td>
@@ -102,7 +102,7 @@
                     <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
-                <td>
+                <td style="text-align:center">
                     <asp:Label Text='<%# Eval("AlbumID") %>' runat="server" ID="AlbumIDLabel" 
                         Width="75px" /></td>
                 <td>
@@ -116,7 +116,7 @@
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:Label Text='<%# Eval("ArtistID") %>' runat="server" ID="ArtistIDLabel" /></td>--%>
-                <td>
+                <td style="text-align:center">
                     <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" 
                         Width="75px" /></td>
                 <td>
@@ -129,12 +129,18 @@
                     <td runat="server">
                         <table runat="server" id="itemPlaceholderContainer" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Verdana, Arial, Helvetica, sans-serif;" border="1">
                             <tr runat="server" style="background-color: #E0FFFF; color: #333333;">
-                                <th runat="server">Options</th>
-                                <th runat="server">ID</th>
-                                <th runat="server">Title</th>
-                                <th runat="server">Artist</th>
-                                <th runat="server">Released</th>
-                                <th runat="server">Label</th>
+                                <th runat="server" style="text-align:center">
+                                    Options</th>
+                                <th runat="server" style="text-align:center">
+                                    ID</th>
+                                <th runat="server">
+                                    Title</th>
+                                <th runat="server">
+                                    Artist</th>
+                                <th runat="server" style="text-align:center">
+                                    Released</th>
+                                <th runat="server">
+                                    Label</th>
                             </tr>
                             <tr runat="server" id="itemPlaceholder"></tr>
                         </table>
@@ -160,7 +166,7 @@
                     <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
-                <td>
+                <td style="text-align:center">
                     <asp:Label Text='<%# Eval("AlbumID") %>' runat="server" ID="AlbumIDLabel" 
                         Width="75px" /></td>
                 <td>
@@ -174,7 +180,7 @@
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:Label Text='<%# Eval("ArtistID") %>' runat="server" ID="ArtistIDLabel" /></td>--%>
-                <td>
+                <td style="text-align:center">
                     <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" 
                         Width="75px" /></td>
                 <td>

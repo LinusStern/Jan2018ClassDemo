@@ -4,6 +4,8 @@
 
     <!-- Deletion requires DataKeyNames parameter -->
     <!-- Eval() is read only / Bind() is read and write -->
+    
+    <!-- Data list -->
     <asp:ListView ID="Albums" runat="server" 
         DataSourceID="Albums_ODS" 
         InsertItemPosition="LastItem" 
@@ -189,6 +191,7 @@
         </SelectedItemTemplate>
     </asp:ListView>
 
+    <!-- Data sources -->
     <asp:ObjectDataSource 
         ID="Albums_ODS" runat="server" 
         DataObjectTypeName="Chinook.Data.Entities.Album" 

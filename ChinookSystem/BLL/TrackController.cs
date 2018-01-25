@@ -24,21 +24,40 @@ namespace ChinookSystem.BLL
         {
             using (ChinookContext context = new ChinookContext())
             {
-                return context.Tracks.OrderBy(x => x.Name).ToList();
+                return context.Tracks
+                    .OrderBy(x => x.Name)
+                    .ToList();
             }
         }
 
         /// <summary>
         /// Finds a track with a specified ID
         /// </summary>
-        /// <param name="trackID"></param>
+        /// <param name="_trackID"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public Track Track_Get(int trackID)
+        public Track Track_Get(int _trackID)
         {
             using (ChinookContext context = new ChinookContext())
             {
-                return context.Tracks.Find(trackID);
+                return context.Tracks.Find(_trackID);
+            }
+        }
+
+        /// <summary>
+        /// Finds all tracks of a specified album
+        /// </summary>
+        /// <param name="albumID"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Track> Tracks_GetByAlbumID(int _albumID)
+        {
+            using (ChinookContext context = new ChinookContext())
+            {
+                return context.Tracks
+                    .Where(x => x.AlbumID == _albumID)
+                    .Select(x => x)
+                    .ToList();
             }
         }
     }

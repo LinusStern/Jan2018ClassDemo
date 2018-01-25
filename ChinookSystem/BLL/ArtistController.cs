@@ -31,14 +31,14 @@ namespace ChinookSystem.BLL
         /// <summary>
         /// Finds an artist with a specified ID
         /// </summary>
-        /// <param name="artistID"></param>
+        /// <param name="_artistID"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public Artist Artist_Get(int artistID)
+        public Artist Artist_Get(int _artistID)
         {
             using (ChinookContext context = new ChinookContext())
             {
-                return context.Artists.Find(artistID);
+                return context.Artists.Find(_artistID);
             }
         }
     }

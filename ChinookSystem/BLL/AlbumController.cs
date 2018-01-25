@@ -32,28 +32,28 @@ namespace ChinookSystem.BLL
         /// <summary>
         /// Finds an album with a specified ID
         /// </summary>
-        /// <param name="albumID"></param>
+        /// <param name="_albumID"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public Album Album_Get(int albumID)
+        public Album Album_Get(int _albumID)
         {
             using (ChinookContext context = new ChinookContext())
             {
-                return context.Albums.Find(albumID);
+                return context.Albums.Find(_albumID);
             }
         }
 
         /// <summary>
         /// Adds an album to the corresponding table in the database
         /// </summary>
-        /// <param name="album"></param>
+        /// <param name="_album"></param>
         [DataObjectMethod(DataObjectMethodType.Insert, false)]
-        public void Album_Add(Album album)
+        public void Album_Add(Album _album)
         {
             using (ChinookContext context = new ChinookContext())
             {
                 // Staged for physical insertion into the database
-                context.Albums.Add(album);
+                context.Albums.Add(_album);
 
                 // Commit the changes to the database
                 context.SaveChanges();
@@ -63,16 +63,16 @@ namespace ChinookSystem.BLL
         /// <summary>
         /// Updates a specific album in the database
         /// </summary>
-        /// <param name="album"></param>
+        /// <param name="_album"></param>
         [DataObjectMethod(DataObjectMethodType.Update, false)]
-        public void Album_Update(Album album)
+        public void Album_Update(Album _album)
         {
             using (ChinookContext context = new ChinookContext())
             {
-                album.ReleaseLabel = string.IsNullOrEmpty(album.ReleaseLabel) ? null : album.ReleaseLabel;
+                _album.ReleaseLabel = string.IsNullOrEmpty(_album.ReleaseLabel) ? null : _album.ReleaseLabel;
 
                 // Flag record as being modified
-                context.Entry(album).State = EntityState.Modified;
+                context.Entry(_album).State = EntityState.Modified;
 
                 // Commit the changes to the database
                 context.SaveChanges();
@@ -82,21 +82,21 @@ namespace ChinookSystem.BLL
         /// <summary>
         /// Removes a specific album from the database
         /// </summary>
-        /// <param name="album"></param>
+        /// <param name="_album"></param>
         [DataObjectMethod(DataObjectMethodType.Delete, false)]
-        public void Album_Delete(Album album)
+        public void Album_Delete(Album _album)
         {
             using (ChinookContext context = new ChinookContext())
             {
-                Albums_Delete(album.AlbumID);
+                Albums_Delete(_album.AlbumID);
             }
         }
 
-        public void Albums_Delete(int albumID)
+        public void Albums_Delete(int _albumID)
         {
             using (ChinookContext context = new ChinookContext())
             {
-                var existingAlbum = context.Albums.Find(albumID);
+                var existingAlbum = context.Albums.Find(_albumID);
 
                 // Ensure provided record exists in the database
                 if (existingAlbum == null) {

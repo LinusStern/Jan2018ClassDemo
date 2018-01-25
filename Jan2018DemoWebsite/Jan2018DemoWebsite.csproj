@@ -228,6 +228,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Account\Web.config" />
+    <Content Include="SamplePages\AlbumDetails.aspx" />
     <Content Include="SamplePages\ODSCRUD.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -427,6 +428,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\AlbumDetails.aspx.cs">
+      <DependentUpon>AlbumDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\AlbumDetails.aspx.designer.cs">
+      <DependentUpon>AlbumDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\ODSCRUD.aspx.cs">
       <DependentUpon>ODSCRUD.aspx</DependentUpon>

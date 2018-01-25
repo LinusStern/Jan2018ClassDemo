@@ -3,13 +3,15 @@
     <h3>ODS Query</h3>
 
     <div class="row">
+        <!-- Data grid -->
         <asp:GridView 
             ID="Albums" runat="server" 
             AutoGenerateColumns="False" 
             DataSourceID="Albums_ODS" 
             AllowPaging="True" PageSize="15" 
             BorderStyle="None" GridLines="Horizontal" 
-            CellPadding="5" CellSpacing="2" OnSelectedIndexChanged="Albums_SelectedIndexChanged">
+            CellPadding="5" CellSpacing="2" 
+            OnSelectedIndexChanged="Albums_SelectedIndexChanged">
             <Columns>
                 <asp:TemplateField HeaderText="ID" SortExpression="AlbumID">
                     <ItemTemplate>
@@ -54,12 +56,14 @@
             </Columns>
         </asp:GridView>
 
+        <!-- Data sources -->
         <asp:ObjectDataSource 
             ID="Albums_ODS" runat="server" 
             OldValuesParameterFormatString="original_{0}" 
             SelectMethod="Albums_ToList" 
             TypeName="ChinookSystem.BLL.AlbumController">
         </asp:ObjectDataSource>
+
         <asp:ObjectDataSource 
             ID="Artists_ODS" runat="server" 
             OldValuesParameterFormatString="original_{0}" 

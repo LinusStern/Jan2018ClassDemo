@@ -19,8 +19,14 @@ namespace Jan2018DemoWebsite.SamplePages
             // 1: Access row selected with the "View" command button from the grid view
             GridViewRow gridViewRow = Albums.Rows[Albums.SelectedIndex];
 
-            // 2: Access the data from the grid view (specifically the template control)
-            string AlbumID = (gridViewRow.FindControl("AlbumID") as Label).Text;
+            // 2: Extract the data from the grid view (template control) as a string
+            string albumID = (gridViewRow.FindControl("AlbumID_Label") as Label).Text;
+
+            // Send the extracted data to another page
+            // ? denotes a following parameter (in plaintext format)
+            // = dentoes the parameter value
+            // & seperates multiple parameters
+            Response.Redirect("AlbumDetails.aspx?aid=" + albumID);
         }
     }
 }

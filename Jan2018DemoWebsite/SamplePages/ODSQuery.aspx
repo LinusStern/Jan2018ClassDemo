@@ -13,9 +13,9 @@
             CellPadding="5" CellSpacing="2" 
             OnSelectedIndexChanged="Albums_SelectedIndexChanged">
             <Columns>
-                <asp:TemplateField HeaderText="ID" SortExpression="AlbumID">
+                <asp:TemplateField HeaderText="ID" SortExpression="AlbumId">
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Eval("AlbumID") %>' ID="AlbumID_Label"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Eval("AlbumId") %>' ID="AlbumID_Label"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
 
@@ -30,8 +30,8 @@
                         <asp:DropDownList 
                             ID="Artists" runat="server" 
                             DataSourceID="Artists_ODS" 
-                            DataTextField="Name" DataValueField="ArtistID" 
-                            SelectedValue='<%# Eval("ArtistID") %>' 
+                            DataTextField="Name" DataValueField="ArtistId" 
+                            SelectedValue='<%# Eval("ArtistId") %>' 
                             Width="360px">
                         </asp:DropDownList>
                         <%--<asp:Label runat="server" Text='<%# Bind("ArtistID") %>' ID="Label3"></asp:Label>--%>
@@ -70,5 +70,33 @@
             SelectMethod="Artists_ToList" 
             TypeName="ChinookSystem.BLL.ArtistController">
         </asp:ObjectDataSource>
+    </div>
+
+    <!-- Pulled from text file -->
+     <div class="row">
+        <asp:Button ID="CountAlbums" runat="server" Text="Count Albums" OnClick="CountAlbums_Click"  />&nbsp;&nbsp;
+        <asp:Label ID="Label1" runat="server" Text="Number of Albums per Artist"></asp:Label>
+    </div>
+
+    <div>
+        <asp:ListView ID="ArtistAlbumCountList" runat="server"
+              ItemType="Chinook.Data.POCOs.ArtistAlbumCounts">
+            <LayoutTemplate>
+                <div >
+                    <span runat="server" id="itemPlaceholder" />
+                </div>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <div>
+                    <asp:DropDownList ID="ArtistList2" runat="server" 
+                        DataSourceID="Artists_ODS" 
+                        DataTextField="Name" DataValueField="ArtistId"
+                        SelectedValue ='<%# Item.ArtistId %>'
+                        Enabled="False">
+                    </asp:DropDownList>&nbsp;&nbsp;&nbsp;
+                    <%# Item.AlbumCount %> 
+                </div>
+            </ItemTemplate>
+        </asp:ListView>
     </div>
 </asp:Content>

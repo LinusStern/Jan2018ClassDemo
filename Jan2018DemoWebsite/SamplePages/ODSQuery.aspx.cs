@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+#region Extensions
+using Chinook.Data.POCOs;
+#endregion
+
 namespace Jan2018DemoWebsite.SamplePages
 {
     public partial class ODSQuery : System.Web.UI.Page
@@ -27,6 +31,44 @@ namespace Jan2018DemoWebsite.SamplePages
             // = dentoes the parameter value
             // & seperates multiple parameters
             Response.Redirect("AlbumDetails.aspx?aid=" + albumID);
+        }
+
+        protected void CountAlbums_Click(object sender, EventArgs e)
+        {
+            // Note: Only available records are the instances on the grids current page
+            List<ArtistAlbumCounts> ArtistList = new List<ArtistAlbumCounts>();
+
+            // Reusable pointer to the instance of the class
+            ArtistAlbumCounts item = null;
+
+            // Iterate through each grid row
+            int artistID = 0;
+            foreach (GridViewRow row in Albums.Rows)
+            {
+                // Current rows artist ID
+                artistID = int.Parse((row.FindControl("Artists") as DropDownList).SelectedValue);
+
+                // Check if the current item is already accounted for
+                item = ArtistList.Find(x => x.ArtistId == artistID);
+
+                // Result of check
+                if (item == null)
+                {
+                    // Create instance and add it to the list
+                    item = new ArtistAlbumCounts();
+                    item.ArtistId = artistID;
+                    item.AlbumCount = 1;
+                    ArtistList.Add(item);
+                }
+                else
+                {
+                    item.AlbumCount++;
+                }
+            }
+
+            // Attach the list to the display control
+            ArtistAlbumCountList.DataSource = ArtistList;
+            ArtistAlbumCountList.DataBind();
         }
     }
 }

@@ -55,7 +55,7 @@ namespace ChinookSystem.BLL
             using (ChinookContext context = new ChinookContext())
             {
                 return context.Tracks
-                    .Where(x => x.AlbumID == _albumID)
+                    .Where(x => x.AlbumId == _albumID)
                     .Select(x => x)
                     .ToList();
             }

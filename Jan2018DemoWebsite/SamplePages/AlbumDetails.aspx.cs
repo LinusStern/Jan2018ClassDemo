@@ -44,14 +44,14 @@ namespace Jan2018DemoWebsite.SamplePages
             double time = 0;
             double size = 0;
 
-            foreach (ListViewItem item in AlbumTracks.Items)
+            foreach (ListViewItem row in AlbumTracks.Items)
             {
                 time += double.Parse(
-                    (item.FindControl("MillisecondsLabel") as Label)
+                    (row.FindControl("MillisecondsLabel") as Label)
                     .Text);
 
                 size += double.Parse(
-                    (item.FindControl("BytesLabel") as Label)
+                    (row.FindControl("BytesLabel") as Label)
                     .Text);
 
                 TracksTime.Text = time.ToString();

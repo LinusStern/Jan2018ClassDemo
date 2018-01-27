@@ -88,7 +88,7 @@ namespace ChinookSystem.BLL
         {
             using (ChinookContext context = new ChinookContext())
             {
-                Albums_Delete(_album.AlbumID);
+                Albums_Delete(_album.AlbumId);
             }
         }
 

@@ -6,30 +6,21 @@ namespace Chinook.Data.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Album
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Album()
+        public AspNetRole()
         {
-            Tracks = new HashSet<Track>();
+            AspNetUsers = new HashSet<AspNetUser>();
         }
 
-        public int AlbumId { get; set; }
+        public string Id { get; set; }
 
         [Required]
-        [StringLength(160)]
-        public string Title { get; set; }
-
-        public int ArtistId { get; set; }
-
-        public int ReleaseYear { get; set; }
-
-        [StringLength(50)]
-        public string ReleaseLabel { get; set; }
-
-        public virtual Artist Artist { get; set; }
+        [StringLength(256)]
+        public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Track> Tracks { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

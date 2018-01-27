@@ -1,38 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-#region Extensions
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-#endregion
-
 namespace Chinook.Data.Entities
 {
-    [Table("Tracks")]
-    public class Track
-    {
-        [Key]
-        public int TrackID { get; set; }
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-        [Required(ErrorMessage = "Track name is a required field")]
-        [StringLength(400, ErrorMessage = "Max length of a track name is 400 characters")]
+    public partial class Track
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Track()
+        {
+            InvoiceLines = new HashSet<InvoiceLine>();
+            PlaylistTracks = new HashSet<PlaylistTrack>();
+        }
+
+        public int TrackId { get; set; }
+
+        [Required]
+        [StringLength(200)]
         public string Name { get; set; }
 
-        public int? AlbumID { get; set; } // Nullable
-        public int MediaTypeID { get; set; }
-        public int? GenreID { get; set; } // Nullable
+        public int? AlbumId { get; set; }
 
-        [StringLength(440, ErrorMessage = "Max length of a track composer is 440 characters")]
-        public string Composer { get; set; } // Nullable
+        public int MediaTypeId { get; set; }
+
+        public int? GenreId { get; set; }
+
+        [StringLength(220)]
+        public string Composer { get; set; }
 
         public int Milliseconds { get; set; }
-        public int? Bytes { get; set; } // Nullable
+
+        public int? Bytes { get; set; }
+
+        [Column(TypeName = "numeric")]
         public decimal UnitPrice { get; set; }
 
-        // Navigational properties (class relationships)
         public virtual Album Album { get; set; }
+
+        public virtual Genre Genre { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InvoiceLine> InvoiceLines { get; set; }
+
+        public virtual MediaType MediaType { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlaylistTrack> PlaylistTracks { get; set; }
     }
 }

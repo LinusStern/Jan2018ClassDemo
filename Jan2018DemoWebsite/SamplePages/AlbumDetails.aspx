@@ -17,13 +17,13 @@
             <AlternatingItemTemplate>
                 <tr style="background-color: #FFF8DC;">
                     <td>
-                        <asp:Label Text='<%# Eval("TrackID") %>' runat="server" ID="TrackIDLabel" /></td>
+                        <asp:Label Text='<%# Eval("TrackId") %>' runat="server" ID="TrackIDLabel" /></td>
                     <td>
                         <asp:Label Text='<%# Eval("Name") %>' runat="server" ID="NameLabel" /></td>
                     <td>
-                        <asp:Label Text='<%# Eval("MediaTypeID") %>' runat="server" ID="MediaTypeIDLabel" /></td>
+                        <asp:Label Text='<%# Eval("MediaTypeId") %>' runat="server" ID="MediaTypeIDLabel" /></td>
                     <td>
-                        <asp:Label Text='<%# Eval("GenreID") %>' runat="server" ID="GenreIDLabel" /></td>
+                        <asp:Label Text='<%# Eval("GenreId") %>' runat="server" ID="GenreIDLabel" /></td>
                     <td>
                         <asp:Label Text='<%# Eval("Composer") %>' runat="server" ID="ComposerLabel" /></td>
                     <td>
@@ -36,7 +36,7 @@
                         <asp:Button ID="Select_Button" runat="server" 
                             Text="Pick" 
                             CommandName="Select" 
-                            CommandArgument='<%# Eval("TrackID") %>' /></td>
+                            CommandArgument='<%# Eval("TrackId") %>' /></td>
                 </tr>
             </AlternatingItemTemplate>
             <EmptyDataTemplate>
@@ -49,13 +49,13 @@
             <ItemTemplate>
                 <tr style="background-color: #DCDCDC; color: #000000;">
                     <td>
-                        <asp:Label Text='<%# Eval("TrackID") %>' runat="server" ID="TrackIDLabel" /></td>
+                        <asp:Label Text='<%# Eval("TrackId") %>' runat="server" ID="TrackIDLabel" /></td>
                     <td>
                         <asp:Label Text='<%# Eval("Name") %>' runat="server" ID="NameLabel" /></td>
                     <td>
-                        <asp:Label Text='<%# Eval("MediaTypeID") %>' runat="server" ID="MediaTypeIDLabel" /></td>
+                        <asp:Label Text='<%# Eval("MediaTypeId") %>' runat="server" ID="MediaTypeIDLabel" /></td>
                     <td>
-                        <asp:Label Text='<%# Eval("GenreID") %>' runat="server" ID="GenreIDLabel" /></td>
+                        <asp:Label Text='<%# Eval("GenreId") %>' runat="server" ID="GenreIDLabel" /></td>
                     <td>
                         <asp:Label Text='<%# Eval("Composer") %>' runat="server" ID="ComposerLabel" /></td>
                     <td>
@@ -68,7 +68,7 @@
                         <asp:Button ID="Select_Button" runat="server" 
                             Text="Pick" 
                             CommandName="Select" 
-                            CommandArgument='<%# Eval("TrackID") %>' /></td>
+                            CommandArgument='<%# Eval("TrackId") %>' /></td>
                 </tr>
             </ItemTemplate>
             <LayoutTemplate>
@@ -118,7 +118,7 @@
         </asp:ObjectDataSource>
     </div>
 
-    <!-- Pulled from Moodle -->
+    <!-- Pulled from text file -->
     <div class="row">
         <asp:Label ID="Label3" runat="server" Text="Total time and size"></asp:Label>&nbsp;&nbsp;
         <asp:LinkButton ID="Totals" runat="server" OnClick="Totals_Click" >Totals</asp:LinkButton>&nbsp;&nbsp;

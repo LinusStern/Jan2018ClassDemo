@@ -9,7 +9,7 @@
     <asp:ListView ID="Albums" runat="server" 
         DataSourceID="Albums_ODS" 
         InsertItemPosition="LastItem" 
-        DataKeyNames="AlbumID">
+        DataKeyNames="AlbumId">
         <AlternatingItemTemplate>
             <tr style="background-color: #FFFFFF; color: #284775;">
                 <td>
@@ -17,7 +17,7 @@
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
                 <td style="text-align:center">
-                    <asp:Label Text='<%# Eval("AlbumID") %>' runat="server" ID="AlbumIDLabel"
+                    <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIDLabel"
                          Width="75px" /></td>
                 <td>
                     <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" 
@@ -25,8 +25,8 @@
                 <td>
                     <asp:DropDownList 
                         ID="Artists" runat="server" DataSourceID="Artists_ODS" 
-                        DataTextField="Name" DataValueField="ArtistID" 
-                        SelectedValue='<%# Eval("ArtistID") %>' 
+                        DataTextField="Name" DataValueField="ArtistId" 
+                        SelectedValue='<%# Eval("ArtistId") %>' 
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:Label Text='<%# Eval("ArtistID") %>' runat="server" ID="ArtistIDLabel" /></td>--%>
@@ -44,7 +44,7 @@
                     <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
                 </td>
                 <td style="text-align:center">
-                    <asp:TextBox Text='<%# Bind("AlbumID") %>' runat="server" ID="AlbumIDTextBox" 
+                    <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIDTextBox" 
                         Width="75px" Enabled="False" /></td>
                 <td>
                     <asp:TextBox Text='<%# Bind("Title") %>' runat="server" ID="TitleTextBox" 
@@ -52,8 +52,8 @@
                 <td>
                     <asp:DropDownList 
                         ID="Artists" runat="server" DataSourceID="Artists_ODS" 
-                        DataTextField="Name" DataValueField="ArtistID" 
-                        SelectedValue='<%# Bind("ArtistID") %>' 
+                        DataTextField="Name" DataValueField="ArtistId" 
+                        SelectedValue='<%# Bind("ArtistId") %>' 
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:TextBox Text='<%# Bind("ArtistID") %>' runat="server" ID="ArtistIDTextBox" /></td>--%>
@@ -78,7 +78,7 @@
                     <asp:Button runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" />
                 </td>
                 <td style="text-align:center">
-                    <asp:TextBox Text='<%# Bind("AlbumID") %>' runat="server" ID="AlbumIDTextBox" 
+                    <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIDTextBox" 
                         Width="75px" Enabled="False" /></td>
                 <td>
                     <asp:TextBox Text='<%# Bind("Title") %>' runat="server" ID="TitleTextBox" 
@@ -86,8 +86,8 @@
                 <td>
                     <asp:DropDownList 
                         ID="Artists" runat="server" DataSourceID="Artists_ODS" 
-                        DataTextField="Name" DataValueField="ArtistID" 
-                        SelectedValue='<%# Bind("ArtistID") %>' 
+                        DataTextField="Name" DataValueField="ArtistId" 
+                        SelectedValue='<%# Bind("ArtistId") %>' 
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:TextBox Text='<%# Bind("ArtistID") %>' runat="server" ID="ArtistIDTextBox" /></td>--%>
@@ -113,8 +113,8 @@
                 <td>
                     <asp:DropDownList 
                         ID="Artists" runat="server" DataSourceID="Artists_ODS" 
-                        DataTextField="Name" DataValueField="ArtistID" 
-                        SelectedValue='<%# Eval("ArtistID") %>' 
+                        DataTextField="Name" DataValueField="ArtistId" 
+                        SelectedValue='<%# Eval("ArtistId") %>' 
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:Label Text='<%# Eval("ArtistID") %>' runat="server" ID="ArtistIDLabel" /></td>--%>
@@ -169,7 +169,7 @@
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
                 <td style="text-align:center">
-                    <asp:Label Text='<%# Eval("AlbumID") %>' runat="server" ID="AlbumIDLabel" 
+                    <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIDLabel" 
                         Width="75px" /></td>
                 <td>
                     <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" 
@@ -177,8 +177,8 @@
                 <td>
                     <asp:DropDownList 
                         ID="Artists" runat="server" DataSourceID="Artists_ODS" 
-                        DataTextField="Name" DataValueField="ArtistID" 
-                        SelectedValue='<%# Eval("ArtistID") %>' 
+                        DataTextField="Name" DataValueField="ArtistId" 
+                        SelectedValue='<%# Eval("ArtistId") %>' 
                         Width="360px">
                     </asp:DropDownList>
                     <%--<asp:Label Text='<%# Eval("ArtistID") %>' runat="server" ID="ArtistIDLabel" /></td>--%>

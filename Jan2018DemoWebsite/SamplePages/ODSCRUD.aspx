@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ODSCRUD.aspx.cs" Inherits="Jan2018DemoWebsite.DemoPages.ODSCRUD" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>ODS CRUD of Albums</h1>
+    <h3>ODS CRUD of Albums</h3>
 
     <!-- Deletion requires DataKeyNames parameter -->
     <!-- Eval() is read only / Bind() is read and write -->

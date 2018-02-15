@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\EmployeeClients.cs" />
     <Compile Include="Entities\Album.cs" />
     <Compile Include="Entities\Artist.cs" />
     <Compile Include="Entities\AspNetRole.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Entities\PlaylistTrack.cs" />
     <Compile Include="Entities\Track.cs" />
     <Compile Include="POCOs\ArtistAlbumCounts.cs" />
+    <Compile Include="POCOs\ClientInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

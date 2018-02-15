@@ -5,7 +5,7 @@ namespace ChinookSystem.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    #region Extensions
+    #region More Namespaces
     using Chinook.Data.Entities;
     #endregion
 

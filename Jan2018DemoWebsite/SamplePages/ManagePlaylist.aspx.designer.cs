@@ -121,13 +121,13 @@ namespace Jan2018DemoWebsite.SamplePages {
         protected global::System.Web.UI.WebControls.Button AlbumFetch;
         
         /// <summary>
-        /// Label5 control.
+        /// Tracks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label Tracks;
         
         /// <summary>
         /// TracksBy control.

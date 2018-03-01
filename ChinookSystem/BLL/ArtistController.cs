@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 #region More Namespaces
 using Chinook.Data.Entities;
+using Chinook.Data.POCOs;
 using ChinookSystem.DAL;
 using System.ComponentModel;
 #endregion
@@ -39,6 +40,28 @@ namespace ChinookSystem.BLL
             using (ChinookContext context = new ChinookContext())
             {
                 return context.Artists.Find(_artistID);
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a list of artist names and an artist ID for display in a dropdown list
+        /// </summary>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<SelectionList> List_ArtistNames()
+        {
+            using (var context = new ChinookContext())
+            {
+                var results =
+                    from x in context.Artists
+                    orderby x.Name
+                    select new SelectionList
+                    {
+                        IDValueField = x.ArtistId,
+                        DisplayText = x.Name
+                    };
+
+                return results.ToList();
             }
         }
     }

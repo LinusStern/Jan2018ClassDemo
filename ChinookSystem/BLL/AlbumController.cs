@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 #region More Namespaces
 using Chinook.Data.Entities;
+using Chinook.Data.POCOs;
 using ChinookSystem.DAL;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -105,6 +106,28 @@ namespace ChinookSystem.BLL
 
                 context.Albums.Remove(existingAlbum);
                 context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a list of album titles and an album ID for display in a dropdown list
+        /// </summary>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<SelectionList> List_AlbumTitles()
+        {
+            using (var context = new ChinookContext())
+            {
+                var results =
+                    from x in context.Albums
+                    orderby x.Title
+                    select new SelectionList
+                    {
+                        IDValueField = x.AlbumId,
+                        DisplayText = x.Title
+                    };
+
+                return results.ToList();
             }
         }
     }

@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
+
     </div>
 </div>
    
@@ -80,8 +80,8 @@
     <!-- Results area -->
     <div class="col-sm-10">
         <asp:Label ID="Tracks" runat="server" Text="Tracks"></asp:Label>&nbsp;&nbsp;
-        <asp:Label ID="TracksBy" runat="server" ></asp:Label>&nbsp;&nbsp;
-        <asp:Label ID="SearchArgID" runat="server" ></asp:Label>
+        <asp:Label ID="TracksBy" runat="server"></asp:Label>&nbsp;&nbsp;
+        <asp:Label ID="SearchArgID" runat="server"></asp:Label>
         <br />
 
         <asp:ListView 

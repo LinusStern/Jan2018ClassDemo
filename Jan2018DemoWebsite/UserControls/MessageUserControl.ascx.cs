@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Jan2018DemoWebsite.UserControls
+namespace Jan2018ClassDemo.UserControls
 {
     public delegate void ProcessRequest();
 

@@ -19,8 +19,6 @@ namespace Jan2018DemoWebsite.SamplePages
             TracksSelectionList.DataSource = null;
         }
 
-       
-
         protected void ArtistFetch_Click(object sender, EventArgs e)
         {
 
@@ -69,6 +67,5 @@ namespace Jan2018DemoWebsite.SamplePages
             //code to go here
            
         }
-
     }
 }

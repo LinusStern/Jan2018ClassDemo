@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Jan2018DemoWebsite.UserControls {
+namespace Jan2018ClassDemo.UserControls {
     
     
     public partial class MessageUserControl {

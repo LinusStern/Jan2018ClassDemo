@@ -62,16 +62,41 @@ namespace ChinookSystem.BLL
             }
         }
 
+        /// <summary>
+        /// Finds all tracks by a specified argument (artist, media, genre)
+        /// </summary>
+        /// <param name="tracksby"></param>
+        /// <param name="argid"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<TrackList> List_TracksForPlaylistSelection(string tracksby, int argid)
         {
             using (var context = new ChinookContext())
             {
-                List<TrackList> results = null;
+                var results =
+                    from x in context.Tracks
+                    where tracksby.Equals("Artist") // By artist
+                        ? x.Album.ArtistId == argid
+                        : tracksby.Equals("MediaType") // By media type
+                            ? x.MediaTypeId == argid
+                            : tracksby.Equals("Genre") // By genre
+                                ? x.GenreId == argid
+                                : x.AlbumId == argid
+                    orderby x.Name
+                    select new TrackList
+                    {
+                        TrackID = x.TrackId,
+                        Name = x.Name,
+                        Title = x.Album.Title,
+                        MediaName = x.MediaType.Name,
+                        GenreName = x.Genre.Name,
+                        Composer = x.Composer,
+                        Milliseconds = x.Milliseconds,
+                        Bytes = x.Bytes,
+                        UnitPrice = x.UnitPrice
+                    };
 
-                //code to go here
-
-                return results;
+                return results.ToList();
             }
         }
     }

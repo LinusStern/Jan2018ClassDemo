@@ -10,7 +10,7 @@ using ChinookSystem.BLL;
 using Chinook.Data.POCOs;
 #endregion
 
-namespace Jan2018DemoWebsite.SamplePages
+namespace Jan2018ClassDemo.SamplePages
 {
     public partial class ManagePlaylist : System.Web.UI.Page
     {
@@ -23,7 +23,15 @@ namespace Jan2018DemoWebsite.SamplePages
         {
 
             //code to go here
+            MessageUserControl.TryRun(() =>
+            {
+                TracksBy.Text = "Artist";
+                SearchArgID.Text = ArtistDDL.SelectedValue;
 
+                TracksSelectionList.DataBind();
+            }, 
+            "Tracks by Artist", 
+            "Add a track to your playlist by clicking (+)");
         }
 
         protected void MediaTypeFetch_Click(object sender, EventArgs e)

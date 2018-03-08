@@ -21,8 +21,6 @@ namespace Jan2018ClassDemo.SamplePages
 
         protected void ArtistFetch_Click(object sender, EventArgs e)
         {
-
-            //code to go here
             MessageUserControl.TryRun(() =>
             {
                 TracksBy.Text = "Artist";
@@ -70,10 +68,39 @@ namespace Jan2018ClassDemo.SamplePages
             //code to go here
         }
 
+        /// <summary>
+        /// Executes on user intiated add track event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void TracksSelectionList_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            //code to go here
-           
+            if (string.IsNullOrEmpty(PlaylistName.Text))
+            {
+                MessageUserControl.ShowInfo(
+                    "Playlist Name", 
+                    "Playlist name is required when adding a track.");
+            }
+            else
+            {
+                string username = "HansenB"; // (!) Find via security
+                string playlist = PlaylistName.Text;
+
+                // Note: TrackID is imbedded on each list row (with the CommandArgument parameter)
+                int trackID = int.Parse(e.CommandArgument.ToString());
+
+                // Send data to the BLL
+                MessageUserControl.TryRun(() =>
+                {
+                    // BLL connection
+                    PlaylistTracksController sysmgr = new PlaylistTracksController();
+                    sysmgr.Add_TrackToPLaylist(playlist, username, trackID);
+
+                    // Refresh playlist track listing
+                }, 
+                "Track Added", 
+                "Track successfully added to your playlist!");
+            }
         }
     }
 }

@@ -16,17 +16,49 @@ namespace ChinookSystem.BLL
 {
     public class PlaylistTracksController
     {
-        public List<UserPlaylistTrack> List_TracksForPlaylist(
-            string playlistname, string username)
+        public List<UserPlaylistTrack> List_TracksForPlaylist(string playlistname, string username)
         {
             using (var context = new ChinookContext())
             {
-               
-                //code to go here
+                // Attempt to find an existing playlist (given passed parameters)
+                var results = (
+                    from x in context.Playlists
+                    where
+                        x.UserName.Equals(username)
+                        &&
+                        x.Name.Equals(playlistname)
+                    select x)
+                    .FirstOrDefault();
 
-                return null;
+                // Validate playlist (if exists)
+                if (results == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    // Find tracks of the found playlist
+                    var tracks =
+                        from x in context.PlaylistTracks
+                        where x.PlaylistId.Equals(results.PlaylistId)
+                        orderby x.TrackNumber
+                        select new UserPlaylistTrack
+                        {
+                            // On playlist entity
+                            TrackID = x.TrackId,
+                            TrackNumber = x.TrackNumber,
+
+                            // On track entity
+                            TrackName = x.Track.Name,
+                            Milliseconds = x.Track.Milliseconds,
+                            UnitPrice = x.Track.UnitPrice
+                        };
+
+                    return tracks.ToList();
+                }
             }
         }//eom
+
         public void Add_TrackToPLaylist(string playlistname, string username, int trackid)
         {
             // List of all business rule exceptions
@@ -34,7 +66,7 @@ namespace ChinookSystem.BLL
 
             using (var context = new ChinookContext())
             {
-                // Attempt to find an existing playlist
+                // Attempt to find an existing playlist (given passed parameters)
                 Playlist existingPlaylist = context.Playlists
                     .Where(x => 
                         x.Name.Equals(playlistname, StringComparison.OrdinalIgnoreCase) 
@@ -102,8 +134,44 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-                //code to go here 
+                var existingTrack = (
+                    from x in context.Playlists
+                    where
+                        x.Name.Equals(playlistname)
+                        &&
+                        x.UserName.Equals(username)
+                    select x)
+                    .FirstOrDefault();
 
+                if (existingTrack == null)
+                {
+                    throw new Exception("Playlist removed not found on file.");
+                }
+                else
+                {
+                    PlaylistTrack movedTrack = (
+                        from x in existingTrack.PlaylistTracks
+                        where x.TrackId == trackid
+                        select x)
+                        .FirstOrDefault();
+
+                    if (movedTrack == null)
+                    {
+                        throw new Exception("Playlist track not found on file.");
+                    }
+                    else
+                    {
+                        // Track movement
+                        if (direction.Equals("up"))
+                        {
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
             }
         }//eom
 

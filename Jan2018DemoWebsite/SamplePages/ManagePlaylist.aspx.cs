@@ -202,12 +202,63 @@ namespace Jan2018ClassDemo.SamplePages
                 PlayList.DataBind();
             },
             "Track Moved",
-            "Track successfully moved " + direction);
+            "Track successfully moved " + direction + ".");
         }
 
         protected void DeleteTrack_Click(object sender, EventArgs e)
         {
-            //code to go here
+            if (string.IsNullOrEmpty(PlaylistName.Text))
+            {
+                MessageUserControl.ShowInfo("Playlist name is required.");
+            }
+            else
+            {
+                if (PlayList.Rows.Count == 0)
+                {
+                    MessageUserControl.ShowInfo("Playlist is empty.");
+                }
+                else
+                {
+                    // Retrieve all rows marked for deletion
+                    List<int> TracksToDelete = new List<int>(); // Delete by track number
+                    int rowSelections = 0;
+                    CheckBox playlistRow = null;
+
+                    for (int i = 0; i < PlayList.Rows.Count; i++)
+                    {
+                        playlistRow = PlayList.Rows[i].FindControl("Selected") as CheckBox;
+
+                        if (playlistRow.Checked)
+                        {
+                            rowSelections++;
+                            TracksToDelete.Add(int.Parse(
+                                (PlayList.Rows[i].FindControl("TrackID") as Label)
+                                .Text));
+                        }
+                    }
+
+                    // Ensure one or more tracks were selected
+                    if (rowSelections > 0)
+                    {
+                        MessageUserControl.TryRun(() =>
+                        {
+                            PlaylistTracksController sysmgr = new PlaylistTracksController();
+                            sysmgr.DeleteTracks("HansenB", PlaylistName.Text, TracksToDelete);
+
+                            // Refresh playlist track listing
+                            List<UserPlaylistTrack> Info = sysmgr.List_TracksForPlaylist(PlaylistName.Text, "HansenB");
+                            PlayList.DataSource = Info;
+                            PlayList.DataBind();
+                        }, 
+                        "Track(s) Removed", 
+                        "Selected tracks successfully removed from the playlist.");
+                    }
+                    else
+                    {
+                        MessageUserControl.ShowInfo("Warning", "No track selections were made.");
+                    }
+                }
+            }
         }
 
         /// <summary>

@@ -145,7 +145,7 @@ namespace ChinookSystem.BLL
 
                 if (existingTrack == null)
                 {
-                    throw new Exception("Playlist removed not found on file.");
+                    throw new Exception("Playlist not found on file.");
                 }
                 else
                 {
@@ -161,15 +161,68 @@ namespace ChinookSystem.BLL
                     }
                     else
                     {
+                        PlaylistTrack otherTrack;
+                        
                         // Track movement
                         if (direction.Equals("up"))
                         {
+                            // Ensure track is not already the first track
+                            if (movedTrack.TrackNumber == 1)
+                            {
+                                throw new Exception("Playlist track already at the top.");
+                            }
+                            else
+                            {
+                                // Find the track being switched as part of the move
+                                otherTrack = (
+                                    from x in existingTrack.PlaylistTracks
+                                    where x.TrackNumber == movedTrack.TrackNumber - 1 // Track below current
+                                    select x)
+                                    .FirstOrDefault();
 
+                                if (otherTrack == null)
+                                {
+                                    throw new Exception("Track to be switched during the move operation does not exist.");
+                                }
+                                else // Tracks moved
+                                {
+                                    movedTrack.TrackNumber -= 1;
+                                    otherTrack.TrackNumber += 1;
+                                }
+                            }
                         }
                         else
                         {
+                            // Ensure track is not already the final track
+                            if (movedTrack.TrackNumber >= existingTrack.PlaylistTracks.Count)
+                            {
+                                throw new Exception("Playlist track already at the bottom.");
+                            }
+                            else
+                            {
+                                // Find the track being switched as part of the move
+                                otherTrack = (
+                                    from x in existingTrack.PlaylistTracks
+                                    where x.TrackNumber == movedTrack.TrackNumber + 1 // Track above current
+                                    select x)
+                                    .FirstOrDefault();
 
+                                if (otherTrack == null)
+                                {
+                                    throw new Exception("Track to be switched during the move operation does not exist.");
+                                }
+                                else // Tracks moved
+                                {
+                                    movedTrack.TrackNumber += 1;
+                                    otherTrack.TrackNumber -= 1;
+                                }
+                            }
                         }
+
+                        // Save changes to the data (two entities)
+                        context.Entry(movedTrack).Property(y => y.TrackNumber).IsModified = true;
+                        context.Entry(otherTrack).Property(y => y.TrackNumber).IsModified = true;
+                        context.SaveChanges();
                     }
                 }
             }
@@ -180,9 +233,57 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-               //code to go here
+                var existingTrack = (
+                     from x in context.Playlists
+                     where
+                         x.Name.Equals(playlistname)
+                         &&
+                         x.UserName.Equals(username)
+                     select x)
+                     .FirstOrDefault();
 
+                if (existingTrack == null)
+                {
+                    throw new Exception("Playlist not found on file.");
+                }
+                else
+                {
+                    // Track physical order may not adhere to the logical order (track numbering)
+                    var tracksToKeep =
+                        existingTrack.PlaylistTracks
+                        .Where(t => !trackstodelete.Any(
+                            d => d == t.TrackId)) // Look for an item in list A that is also in list B
+                        .OrderBy(t => t.TrackNumber) // Maintains current track order
+                        .Select(t => t);
 
+                    // Delete tracks
+                    PlaylistTrack item = null;
+                    foreach (var trackid in trackstodelete)
+                    {
+                        item =
+                            existingTrack.PlaylistTracks
+                            .Where(t => t.TrackId == trackid)
+                            .FirstOrDefault();
+
+                        if (item != null)
+                        {
+                            existingTrack.PlaylistTracks.Remove(item);
+                        }
+                    }
+
+                    // Renumber tracks (if any remain)
+                    int number = 1;
+                    foreach (var track in tracksToKeep)
+                    {
+                        track.TrackNumber = number;
+                        number++;
+
+                        context.Entry(track).Property(y => y.TrackNumber).IsModified = true;
+                    }
+
+                    // Commit changes
+                    context.SaveChanges();
+                }
             }
         }//eom
     }

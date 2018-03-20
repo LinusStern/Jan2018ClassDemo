@@ -85,6 +85,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ApplicationRoleManager.cs" />
+    <Compile Include="BLL\ApplicationUserManager.cs" />
+    <Compile Include="BLL\EmailService.cs" />
+    <Compile Include="BLL\SmsService.cs" />
+    <Compile Include="DAL\ApplicationDbContext.cs" />
+    <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\SecurityRoles.cs" />
+    <Compile Include="POCOs\EmployeeListPOCO.cs" />
+    <Compile Include="POCOs\RegisteredEmployeePOCO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,8 +101,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="Entities\" />
+    <ProjectReference Include="..\Chinook.Data\Chinook.Data.csproj">
+      <Project>{6e031031-8596-4782-a9ea-e5323620b475}</Project>
+      <Name>Chinook.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChinookSystem\ChinookSystem.csproj">
+      <Project>{ee9a8275-e90e-4bdc-a101-537393fec92d}</Project>
+      <Name>ChinookSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,6 +7,11 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
+#region More Namespaces
+using AppSecurity.BLL;
+using AppSecurity.Entities;
+#endregion
+
 namespace Jan2018DemoWebsite.Account
 {
     public partial class VerifyPhoneNumber : System.Web.UI.Page

@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Chinook.Data.Entities;
+using Chinook.Data.POCOs;
 using ChinookSystem.BLL;
 using ChinookSystem.DAL;
 using System.ComponentModel;
@@ -319,6 +320,53 @@ namespace AppSecurity.BLL
         public void RemoveUser(UserProfile userinfo)
         {
             this.Delete(this.FindById(userinfo.UserId));
+        }
+        #endregion
+
+        #region Aux Methods
+        public EmployeeInfo User_GetEmployee(string username)
+        {
+            // Find employee ID
+            var employeeID = (
+                from person in Users.ToList()
+                where person.UserName.Equals(username)
+                select person.EmployeeID)
+                .SingleOrDefault();
+
+            // Validate employee ID
+            if (employeeID == null)
+            {
+                throw new Exception("Provided identity is not a registered user");
+            }
+            else
+            {
+                EmployeeInfo employeeInfo = null;
+
+                using (var context = new ChinookContext())
+                {
+                    // Find employee record
+                    employeeInfo = (
+                        from emp in context.Employees
+                        where 
+                            emp.EmployeeId.ToString()
+                            .Equals(employeeID.ToString())
+                        select new EmployeeInfo
+                        {
+                            EmployeeID = emp.EmployeeId,
+                            FirstName = emp.FirstName,
+                            LastName = emp.LastName
+                        })
+                        .FirstOrDefault();
+
+                    // Validate employee record
+                    if (employeeInfo == null)
+                    {
+                        throw new Exception("Employee not found on file");
+                    }
+                }
+
+                return employeeInfo;
+            }
         }
         #endregion
     }

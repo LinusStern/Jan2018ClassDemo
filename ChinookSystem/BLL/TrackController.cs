@@ -99,5 +99,31 @@ namespace ChinookSystem.BLL
                 return results.ToList();
             }
         }
+
+        /// <summary>
+        /// Creates a flat POCO data set for reports
+        /// </summary>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<GenreAlbumReport> GenreAlbumreport_Get()
+        {
+            using (var context = new ChinookContext())
+            {
+                // Sorting done on the report level
+                var results =
+                    from x in context.Tracks
+                    select new GenreAlbumReport
+                    {
+                        GenreName = x.Genre.Name,
+                        AlbumTitle = x.Album.Title,
+                        TrackName = x.Name,
+                        Milliseconds = x.Milliseconds,
+                        Bytes = x.Bytes,
+                        UnitPrice = x.UnitPrice
+                    };
+
+                return results.ToList();
+            }
+        }
     }
 }

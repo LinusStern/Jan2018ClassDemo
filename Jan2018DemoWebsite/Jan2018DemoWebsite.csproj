@@ -136,6 +136,7 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -230,6 +231,7 @@
     <Content Include="Account\Web.config" />
     <Content Include="SamplePages\AlbumDetails.aspx" />
     <Content Include="SamplePages\EmployeeClientSupport.aspx" />
+    <Content Include="SamplePages\GenreAlbumReport.aspx" />
     <Content Include="SamplePages\ManagePlaylist.aspx" />
     <Content Include="SamplePages\ODSCRUD.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -446,6 +448,13 @@
     </Compile>
     <Compile Include="SamplePages\EmployeeClientSupport.aspx.designer.cs">
       <DependentUpon>EmployeeClientSupport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\GenreAlbumReport.aspx.cs">
+      <DependentUpon>GenreAlbumReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\GenreAlbumReport.aspx.designer.cs">
+      <DependentUpon>GenreAlbumReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\ManagePlaylist.aspx.cs">
       <DependentUpon>ManagePlaylist.aspx</DependentUpon>

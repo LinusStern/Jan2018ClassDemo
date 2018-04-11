@@ -105,7 +105,7 @@ namespace ChinookSystem.BLL
         /// </summary>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public List<GenreAlbumReport> GenreAlbumreport_Get()
+        public List<GenreAlbumReport> GenreAlbumReport_Get()
         {
             using (var context = new ChinookContext())
             {

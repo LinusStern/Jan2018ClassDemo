@@ -85,6 +85,16 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ChinookSystem.BLL.AlbumController.datasource" />
+    <None Include="Properties\DataSources\ChinookSystem.BLL.ArtistController.datasource" />
+    <None Include="Properties\DataSources\ChinookSystem.BLL.BusinessRuleException.datasource" />
+    <None Include="Properties\DataSources\ChinookSystem.BLL.EmployeeController.datasource" />
+    <None Include="Properties\DataSources\ChinookSystem.BLL.GenreController.datasource" />
+    <None Include="Properties\DataSources\ChinookSystem.BLL.MediaTypeController.datasource" />
+    <None Include="Properties\DataSources\ChinookSystem.BLL.PlaylistTracksController.datasource" />
+    <None Include="Properties\DataSources\ChinookSystem.BLL.TrackController.datasource" />
+    <None Include="Properties\DataSources\ChinookSystem.DAL.ChinookContext.datasource" />
+    <None Include="Properties\DataSources\Class1.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Chinook.Data\Chinook.Data.csproj">
